@@ -5,7 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentColor: 'gray',
+      currentColor: 'green',
       numRows: 1,
       numColumns: 1,
       rows: [],
@@ -54,7 +54,11 @@ class App extends Component {
           value="Remove Row"
           onClick={this.removeRow}
         ></input>
-        <Table numRows={this.state.numRows} rows={this.state.rows} />
+        <Table
+          numRows={this.state.numRows}
+          rows={this.state.rows}
+          color={this.state.currentColor}
+        />
       </>
     );
   }

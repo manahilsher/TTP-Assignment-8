@@ -9,7 +9,7 @@ const Table = (props) => {
         <tbody id="main-grid">
           {props.rows.map((row) => {
             console.log(row);
-            return <TableRow color={row.color}></TableRow>;
+            return <TableRow color={props.color}></TableRow>;
           })}
         </tbody>
       </table>
