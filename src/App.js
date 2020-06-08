@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
+import { Table } from './components';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentColor: 'gray'
+      currentColor: 'gray',
+      numRows: 1,
+      numColumns: 1,
+      rows: [],
+      columns: [{ color: 'gray' }]
     };
   }
 
   setCurrentColor = (e) => {
     this.setState({ currentColor: e.target.value });
+  };
+
+  addRow = (e) => {
+    let newRows = this.state.rows.slice();
+    newRows.push({ color: this.state.currentColor });
+    console.log(newRows);
+    this.setState({ numRows: this.state.numRows + 1, rows: newRows });
+  };
+
+  removeRow = (e) => {
+    if (this.state.numRows > 0) {
+      this.setState({ numRows: this.state.numRows - 1 });
+    }
   };
 
   render() {
@@ -30,6 +48,13 @@ class App extends Component {
             </select>
           </p>
         </form>
+        <input type="submit" value="Add Row" onClick={this.addRow}></input>
+        <input
+          type="submit"
+          value="Remove Row"
+          onClick={this.removeRow}
+        ></input>
+        <Table numRows={this.state.numRows} rows={this.state.rows} />
       </>
     );
   }
