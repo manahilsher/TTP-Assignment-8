@@ -1,11 +1,13 @@
 import React from 'react';
 import '../App.css';
-import TableCell from './TableCell';
+import { TableCell } from '/';
 
 const TableRow = (props) => {
   return (
     <tr>
-      <TableCell color={props.color}></TableCell>
+      {props.columns.map((column) => {
+        return <TableCell color={column.color} currentColor={props.color} />;
+      })}
     </tr>
   );
 };

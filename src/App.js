@@ -8,8 +8,7 @@ class App extends Component {
       currentColor: 'green',
       numRows: 1,
       numColumns: 1,
-      rows: [],
-      columns: [{ color: 'gray' }]
+      rows: [{ columns: [{ color: 'gray' }] }]
     };
   }
 
@@ -19,15 +18,21 @@ class App extends Component {
 
   addRow = (e) => {
     let newRows = this.state.rows.slice();
-    newRows.push({ color: this.state.currentColor });
-    console.log(newRows);
+    newRows.push({ columns: [] });
+    let count = 0;
+    while (count !== this.state.numColumns) {
+      newRows[newRows.length - 1].columns.push({ color: 'gray' });
+      count++;
+    }
     this.setState({ numRows: this.state.numRows + 1, rows: newRows });
   };
 
-  removeRow = (e) => {
-    if (this.state.numRows > 0) {
-      this.setState({ numRows: this.state.numRows - 1 });
-    }
+  addColumn = (e) => {
+    let newRows = this.state.rows;
+    newRows.forEach((row) => {
+      row.columns.push({ color: 'gray' });
+    });
+    this.setState({ numColumns: this.state.numColumns + 1, rows: newRows });
   };
 
   render() {
@@ -51,8 +56,8 @@ class App extends Component {
         <input type="submit" value="Add Row" onClick={this.addRow}></input>
         <input
           type="submit"
-          value="Remove Row"
-          onClick={this.removeRow}
+          value="Add Column"
+          onClick={this.addColumn}
         ></input>
         <Table
           numRows={this.state.numRows}
@@ -65,30 +70,3 @@ class App extends Component {
 }
 
 export default App;
-
-// import React from "react";
-// import logo from "./logo.svg";
-// import "./App.css";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

@@ -4,11 +4,9 @@ import '../App.css';
 const TableCell = (props) => {
   return (
     <td
-      style={{ backgroundColor: 'gray' }}
+      style={{ backgroundColor: props.color }}
       onClick={(e) => {
-        console.log(e.target.style.backgroundColor);
-        e.target.style.backgroundColor = props.color;
-        console.log(e.target.style.backgroundColor);
+        e.target.style.backgroundColor = props.currentColor;
       }}
     ></td>
   );
