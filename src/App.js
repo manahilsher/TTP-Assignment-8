@@ -12,10 +12,12 @@ class App extends Component {
     };
   }
 
+  // sets the color from what is chosen on the dropdown
   setCurrentColor = (e) => {
     this.setState({ currentColor: e.target.value });
   };
 
+  // adds a new row
   addRow = (e) => {
     let newRows = this.state.rows.slice();
     newRows.push({ columns: [] });
@@ -27,6 +29,7 @@ class App extends Component {
     this.setState({ numRows: this.state.numRows + 1, rows: newRows });
   };
 
+  // adds a new column
   addColumn = (e) => {
     let newRows = this.state.rows;
     newRows.forEach((row) => {
@@ -38,6 +41,7 @@ class App extends Component {
   render() {
     return (
       <>
+        {/* dropdown menu*/}
         <form>
           <p>
             <label>Select list</label>
